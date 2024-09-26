@@ -38,6 +38,15 @@ app.post('/api/users', (req, res) => {
   res.json(newUser);
 });
 
+app.get('/api/users', (req, res) => {
+  try {
+    const users = User.find({});
+    res.json(users);
+  } catch (err) {
+    res.json({ error: 'Error fetching users' });
+  }
+});
+
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port);
 });
