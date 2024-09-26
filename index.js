@@ -38,9 +38,9 @@ app.post('/api/users', (req, res) => {
   res.json(newUser);
 });
 
-app.get('/api/users', (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
-    const users = User.find({});
+    const users = User.find({}).select('username _id');
     res.json(users);
   } catch (err) {
     res.json({ error: 'Error fetching users' });
